@@ -3,14 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Nov 2026 pada 15.18
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -20,6 +18,11 @@ SET time_zone = "+00:00";
 --
 -- Database: `sistem_monitoring_lahan`
 --
+CREATE DATABASE IF NOT EXISTS `sistem_monitoring_lahan`
+  DEFAULT CHARACTER SET utf8mb4
+  COLLATE utf8mb4_general_ci;
+
+USE `sistem_monitoring_lahan`;
 
 -- --------------------------------------------------------
 
@@ -53,8 +56,15 @@ CREATE TABLE `lahan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexes for dumped tables
+-- Dumping data untuk tabel `lahan`
 --
+
+INSERT INTO `lahan` (`ID_lahan`, `ID_akun`) VALUES
+('L001', 1),
+('L002', 1),
+('L003', 2);
+
+-- --------------------------------------------------------
 
 --
 -- Indeks untuk tabel `akun`
@@ -70,24 +80,17 @@ ALTER TABLE `lahan`
   ADD KEY `kepemilikan` (`ID_akun`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
---
-
---
 -- AUTO_INCREMENT untuk tabel `akun`
 --
 ALTER TABLE `akun`
   MODIFY `ID_akun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
---
-
---
--- Ketidakleluasaan untuk tabel `lahan`
+-- Foreign Key untuk tabel `lahan`
 --
 ALTER TABLE `lahan`
   ADD CONSTRAINT `kepemilikan` FOREIGN KEY (`ID_akun`) REFERENCES `akun` (`ID_akun`);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
